@@ -164,6 +164,13 @@ void Principal::on_actionLineas_triggered()
 {
 
 
+    QLine line(mInicial,mFinal);
+    QPainter(this);
+    mPainter->drawLine(line);
+
+
+
+qDebug()<<5;
     /*if ( !mPuedeDibujar ) {
         //acepta el evento
         linea->accept();
@@ -183,8 +190,8 @@ void Principal::on_actionLineas_triggered()
            drawLineAction->setChecked(true);
            pintorlinea = drawLineAction;*/
 
- /*mPainter->drawPoint(mInicial);
- mPainter->drawPoint(mFinal);
- mPainter->drawLine(mInicial, mFinal);*/
+// mPainter->drawPoint(mInicial);
+
+
 }
 
