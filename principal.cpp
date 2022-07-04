@@ -20,6 +20,8 @@ Principal::Principal(QWidget *parent)
     mColor = Qt::black;
     mAncho = DEFAULT_ANCHO;
     mNumLineas = 0;
+    m_porGuardar =false;
+
 }
 
 Principal::~Principal()
@@ -38,6 +40,8 @@ void Principal::paintEvent(QPaintEvent *event)
     painter.drawImage(0, 0, *mImagen);
     // Acepatr el evento
     event->accept();
+    //levantar bandera
+    m_porGuardar = true;
 }
 
 void Principal::mousePressEvent(QMouseEvent *event)
@@ -66,7 +70,7 @@ void Principal::mouseMoveEvent(QMouseEvent *event)
     pincel.setColor(mColor);
     pincel.setWidth(mAncho);
     // Dibujar una linea
-    mPainter->setPen(pincel);
+    mPainter->setPen(pincel); //establece el ancho inicial
     mPainter->drawLine(mInicial, mFinal);
     // Mostrar el número de líneas en la barra de estado
     ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
@@ -74,6 +78,8 @@ void Principal::mouseMoveEvent(QMouseEvent *event)
     update();
     // actualizar el punto inicial
     mInicial = mFinal;
+
+
 }
 
 void Principal::mouseReleaseEvent(QMouseEvent *event) //esto es cuando dejas presionar el click
@@ -84,7 +90,6 @@ void Principal::mouseReleaseEvent(QMouseEvent *event) //esto es cuando dejas pre
     event->accept();
 
 }
-
 
 void Principal::on_actionAncho_triggered()
 {
@@ -97,6 +102,14 @@ void Principal::on_actionAncho_triggered()
 
 void Principal::on_actionSalir_triggered()
 {
+    if(m_porGuardar){
+        int respuesta = QMessageBox::warning(this,
+                                             "Nuevo",
+                                             "¿Desea guardar el archivo actual?","Si","No");
+        if(respuesta == QMessageBox::AcceptRole){
+            on_actionGuardar_triggered();
+        }
+    }
     this->close();
 }
 
@@ -110,6 +123,14 @@ void Principal::on_actionColor_triggered()
 
 void Principal::on_actionNuevo_triggered()
 {
+    if(m_porGuardar){
+        int respuesta = QMessageBox::warning(this,
+                                             "Nuevo",
+                                             "¿Desea guardar el archivo actual?","Si","No");
+        if(respuesta == QMessageBox::AcceptRole){
+            on_actionGuardar_triggered();
+        }
+    }
     mImagen->fill(Qt::white); //pinta toda la imagen o el formulario de blanco para empezar de nuevo
     mNumLineas = 0;
     update();
@@ -130,10 +151,40 @@ void Principal::on_actionGuardar_triggered()
             QMessageBox::information(this,
                                      "Guardar imagen",
                                      "Archivo almacenado en: " + nombreArchivo);
-        else
+       m_porGuardar = false;
+        }else{
             //si hay un error muestro advertencia
             QMessageBox::warning(this,
                                  "Guardar imagen",
                                  "No se pudo almacenar la imagen.");
     }
 }
+
+void Principal::on_actionLineas_triggered()
+{
+
+
+    /*if ( !mPuedeDibujar ) {
+        //acepta el evento
+        linea->accept();
+        //salgo del metodo
+        return;
+    }
+    mInicial = linea->pos();
+      mFinal = linea->pos(); //mfinal es un punto
+         mPainter->drawLine(mInicial, mFinal);
+         update();*/
+
+          /* QAction *drawLineAction = new QAction("Lineas");
+           drawLineAction->setIcon(QIcon("Lineas"));
+           drawLineAction->setToolTip(tr("Lineas"));
+           drawLineAction->setStatusTip(tr("Lineas"));
+           drawLineAction->setCheckable(true);
+           drawLineAction->setChecked(true);
+           pintorlinea = drawLineAction;*/
+
+ /*mPainter->drawPoint(mInicial);
+ mPainter->drawPoint(mFinal);
+ mPainter->drawLine(mInicial, mFinal);*/
+}
+

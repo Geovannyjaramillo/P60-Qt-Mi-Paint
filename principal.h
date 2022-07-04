@@ -2,6 +2,18 @@
 #define PRINCIPAL_H
 
 #include <QMainWindow>
+#include <QImage>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QPaintEvent>
+#include <QDebug>
+#include <QInputDialog>
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QMessageBox>
+
+#include<QActionGroup>
+#include<QAction>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
@@ -16,12 +28,11 @@ public:
     ~Principal();
 
 protected:
-    void paintEvent(QPaintEvent *event) override;
+    void paintEvent(QPaintEvent *event) override; //override siginifica que sobreescribe
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-
-
+    void mousePressEventlinea(QMouseEvent *event);
 private slots:
     void on_actionAncho_triggered();
 
@@ -33,6 +44,8 @@ private slots:
 
     void on_actionGuardar_triggered();
 
+    void on_actionLineas_triggered();
+
 private:
     Ui::Principal *ui;
     QImage *mImagen;        // Imagen sobre la que se va a dibujar
@@ -43,5 +56,7 @@ private:
     int mAncho;             // Define el ancho del pincel
     QColor mColor;          // Define el color del pincel
     int mNumLineas;         // Cuenta el número de líneas
+    bool m_porGuardar;      //para guardar imagen actual
+    QActionEvent *m_linea;
 };
 #endif // PRINCIPAL_H
