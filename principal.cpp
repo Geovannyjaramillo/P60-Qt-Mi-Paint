@@ -77,7 +77,7 @@ void Principal::mouseMoveEvent(QMouseEvent *event)
     // Actualizar la interfaz (repintar con paintEvent)
     update();
     // actualizar el punto inicial
-    mInicial = mFinal;
+    //mInicial = mFinal;
 
 
 }
@@ -162,8 +162,18 @@ void Principal::on_actionGuardar_triggered()
 
 void Principal::on_actionLineas_triggered()
 {
+ qDebug()<<"x inicial: "<<mInicial.x();
+ qDebug()<<"y inicial: "<<mInicial.y();
+ qDebug()<<"x final: "<<mFinal.x();
+ qDebug()<<"x final: "<<mFinal.y();
+ QPen pincel2;
+ pincel2.setColor(mColor);
+ pincel2.setWidth(mAncho);
 
-
+ mPainter->setPen(pincel2);
+ QLine line(mInicial.x(),mInicial.ry(),mFinal.x(),mFinal.ry());
+ mPainter->drawLine(line);
+ update();
     /*if ( !mPuedeDibujar ) {
         //acepta el evento
         linea->accept();
@@ -186,5 +196,27 @@ void Principal::on_actionLineas_triggered()
  /*mPainter->drawPoint(mInicial);
  mPainter->drawPoint(mFinal);
  mPainter->drawLine(mInicial, mFinal);*/
+}
+
+
+void Principal::on_actionRect_nculos_triggered()
+{
+    QPen pincel2;
+    pincel2.setColor(mColor);
+    pincel2.setWidth(mAncho);
+    mPainter->setPen(pincel2);
+    mPainter->drawRect(mInicial.x(),mInicial.y(),mFinal.x()-mFinal.x(),mFinal.y()-mInicial.y());
+
+    qDebug()<<"x inicial: "<<mInicial.x()<<"rs"<<mInicial.rx();
+    qDebug()<<"y inicial: "<<mInicial.y()<<"rs"<<mInicial.ry();
+    qDebug()<<"x final: "<<mFinal.x()<<"rs"<<mFinal.rx();
+    qDebug()<<"x final: "<<mFinal.y()<<"rs"<<mFinal.ry();
+    update();
+}
+
+
+void Principal::on_actionCircunferencias_triggered()
+{
+
 }
 
