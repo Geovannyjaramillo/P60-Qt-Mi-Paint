@@ -10,11 +10,21 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Rockwell Nova</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="cursor">
    <cursorShape>CrossCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>Principal</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Recursos.qrc">
+    <normaloff>:/Recursos/img/brush.png</normaloff>:/Recursos/img/brush.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -23,7 +33,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -57,69 +67,173 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNuevo">
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/agregar.png</normaloff>:/Recursos/img/agregar.png</iconset>
+   </property>
    <property name="text">
     <string>Nuevo</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionGuardar">
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/salvar.png</normaloff>:/Recursos/img/salvar.png</iconset>
+   </property>
    <property name="text">
     <string>Guardar</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionSalir">
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/salida.png</normaloff>:/Recursos/img/salida.png</iconset>
+   </property>
    <property name="text">
     <string>Salir</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="actionColor">
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/dia-del-autismo.png</normaloff>:/Recursos/img/dia-del-autismo.png</iconset>
+   </property>
    <property name="text">
     <string>Color</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+C</string>
    </property>
   </action>
   <action name="actionAncho">
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/tamanos-de-linea.png</normaloff>:/Recursos/img/tamanos-de-linea.png</iconset>
+   </property>
    <property name="text">
     <string>Ancho</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+A</string>
    </property>
   </action>
   <action name="actionLineas">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/nodos.png</normaloff>:/Recursos/img/nodos.png</iconset>
+   </property>
    <property name="text">
     <string>Lineas</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionLibre">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/flecha-hacia-la-derecha-girada-con-linea-discontinua.png</normaloff>:/Recursos/img/flecha-hacia-la-derecha-girada-con-linea-discontinua.png</iconset>
+   </property>
    <property name="text">
     <string>Libre</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionRect_nculos">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/rectangulo.png</normaloff>:/Recursos/img/rectangulo.png</iconset>
+   </property>
    <property name="text">
     <string>Rectánculos</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionCircunferencias">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/Recursos/img/circulo.png</normaloff>:/Recursos/img/circulo.png</iconset>
+   </property>
    <property name="text">
     <string>Circunferencias</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Nova</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

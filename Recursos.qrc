@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Recursos/img/agregar.png</file>
+        <file>Recursos/img/brush.png</file>
+        <file>Recursos/img/circulo.png</file>
+        <file>Recursos/img/dia-del-autismo.png</file>
+        <file>Recursos/img/flecha-hacia-la-derecha-girada-con-linea-discontinua.png</file>
+        <file>Recursos/img/nodos.png</file>
+        <file>Recursos/img/rectangulo.png</file>
+        <file>Recursos/img/salida.png</file>
+        <file>Recursos/img/salvar.png</file>
+        <file>Recursos/img/tamanos-de-linea.png</file>
+    </qresource>
+</RCC>

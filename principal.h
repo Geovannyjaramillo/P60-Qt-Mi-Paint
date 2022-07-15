@@ -11,7 +11,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QLineF>
+#include <QLine>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
@@ -30,7 +30,6 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-    //void mousePressEventlinea(QMouseEvent *event);
 private slots:
     void on_actionAncho_triggered();
 
@@ -44,6 +43,12 @@ private slots:
 
     void on_actionLineas_triggered();
 
+    void on_actionLibre_triggered();
+
+    void on_actionRect_nculos_triggered();
+
+    void on_actionCircunferencias_triggered();
+
 private:
     Ui::Principal *ui;
     QImage *mImagen;        // Imagen sobre la que se va a dibujar
@@ -55,6 +60,6 @@ private:
     QColor mColor;          // Define el color del pincel
     int mNumLineas;         // Cuenta el número de líneas
     bool m_porGuardar;      //para guardar imagen actual
-    bool m_linea;
+
 };
 #endif // PRINCIPAL_H

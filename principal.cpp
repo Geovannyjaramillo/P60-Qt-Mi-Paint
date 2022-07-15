@@ -65,21 +65,14 @@ void Principal::mouseMoveEvent(QMouseEvent *event)
     }
     // Capturar el punto a donde se mueve el mouse
     mFinal = event->pos(); //mfinal es un punto
-    // Crear un pincel y establecer atributos
-    QPen pincel;
-    pincel.setColor(mColor);
-    pincel.setWidth(mAncho);
-    // Dibujar una linea
-    mPainter->setPen(pincel); //establece el ancho inicial
-    mPainter->drawLine(mInicial, mFinal);
-    // Mostrar el número de líneas en la barra de estado
-    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
-    // Actualizar la interfaz (repintar con paintEvent)
-    update();
-    // actualizar el punto inicial
-    mInicial = mFinal;
 
-
+    if(ui->actionLibre->isChecked()){
+        on_actionLibre_triggered();
+        ui->actionRect_nculos->disconnect();
+        ui->actionCircunferencias->disconnect();
+        ui->actionLineas->disconnect();
+        update();
+    }
 }
 
 void Principal::mouseReleaseEvent(QMouseEvent *event) //esto es cuando dejas presionar el click
@@ -88,6 +81,25 @@ void Principal::mouseReleaseEvent(QMouseEvent *event) //esto es cuando dejas pre
     mPuedeDibujar = false;
     // Aceptar el vento
     event->accept();
+
+    if(ui->actionLineas->isChecked()){
+        on_actionLineas_triggered();
+        ui->actionRect_nculos->disconnect();
+        ui->actionCircunferencias->disconnect();
+        update();}
+
+    if(ui->actionRect_nculos->isChecked()){
+        on_actionRect_nculos_triggered();
+        ui->actionLineas->disconnect();
+        ui->actionCircunferencias->disconnect();
+        update();}
+
+    if(ui->actionCircunferencias->isChecked()){
+        on_actionCircunferencias_triggered();
+        ui->actionRect_nculos->disconnect();
+        ui->actionLineas->disconnect();
+        update();}
+
 
 }
 
@@ -162,36 +174,57 @@ void Principal::on_actionGuardar_triggered()
 
 void Principal::on_actionLineas_triggered()
 {
-
-
-    QLine line(mInicial,mFinal);
-    QPainter(this);
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    mPainter->setPen(pincel);
+    QLine line(mInicial.x(),mInicial.ry(),mFinal.x(),mFinal.ry());
     mPainter->drawLine(line);
+    update();
 
 
+}
 
-qDebug()<<5;
-    /*if ( !mPuedeDibujar ) {
-        //acepta el evento
-        linea->accept();
-        //salgo del metodo
-        return;
-    }
-    mInicial = linea->pos();
-      mFinal = linea->pos(); //mfinal es un punto
-         mPainter->drawLine(mInicial, mFinal);
-         update();*/
 
-          /* QAction *drawLineAction = new QAction("Lineas");
-           drawLineAction->setIcon(QIcon("Lineas"));
-           drawLineAction->setToolTip(tr("Lineas"));
-           drawLineAction->setStatusTip(tr("Lineas"));
-           drawLineAction->setCheckable(true);
-           drawLineAction->setChecked(true);
-           pintorlinea = drawLineAction;*/
+void Principal::on_actionLibre_triggered()
+{
+    // Crear un pincel y establecer atributos
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    // Dibujar una linea
+    mPainter->setPen(pincel); //establece el ancho inicial
+    mPainter->drawLine(mInicial, mFinal);
+    // Mostrar el número de líneas en la barra de estado
+    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    // Actualizar la interfaz (repintar con paintEvent)
+    update();
+    // actualizar el punto inicial
+    mInicial = mFinal;
 
-// mPainter->drawPoint(mInicial);
+}
 
+
+void Principal::on_actionRect_nculos_triggered()
+{
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    mPainter->setPen(pincel);
+    mPainter->drawRect(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+    update();
+
+}
+
+
+void Principal::on_actionCircunferencias_triggered()
+{
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    mPainter->setPen(pincel);
+    mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+    update();
 
 }
 
